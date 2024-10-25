@@ -2,8 +2,20 @@ package org.example;
 
 public class Box <T, V extends Number> implements BoxOperations<V> {
 
+    private String name;
     private T genericAttribute;
     private V largestValue;
+
+    public String getName() {
+        return name;
+    }
+
+    public Box(String name) {
+        this.name = name;
+    }
+    public boolean hasSameName(Box <?, ?> box){
+        return this.name.equals(box.getName());
+    }
 
     public T getGenericAttribute() {
         return genericAttribute;
