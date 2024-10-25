@@ -1,31 +1,37 @@
 package org.example;
 
-import static com.sun.jmx.mbeanserver.Util.cast;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
-public class Box <T, V extends Number> implements BoxOperations<V> {
+public class Box<T, V extends Number & Comparable<V>> implements BoxOperations<V> {
 
     private String name;
     private T genericAttribute;
     private V largestValue;
 
+    public Box(String name) {
+        this.name = name;
+    }
+
+    public void setLargestValueFromList(List<V> list) {
+        largestValue = Collections.max(list);
+    }
+
     public String getName() {
         return name;
     }
 
-    public Box(String name) {
-        this.name = name;
-    }
+
     public boolean hasSameName(Box <?, ?> box){
         return this.name.equals(box.getName());
     }
-    public Box<T,?> castValue(Box<T, V> box, Class<V> classType) {
-        if (classType == Integer.class) {
-            Box<T, Integer> newBox = new Box<>(box.getName());
-            newBox.setGenericAttribute(box.getGenericAttribute());
-            newBox.setLargestValue(box.getLargestValue().intValue(), box.getLargestValue().intValue());
 
-            return cast(newBox);}
-     return null;}
+    // TODO: fix it later
+    public T castValue(T value) {
+        return (T) value;
+    }
 
     public T getGenericAttribute() {
         return genericAttribute;
@@ -52,6 +58,7 @@ public class Box <T, V extends Number> implements BoxOperations<V> {
         }
 
     }
+
 
 
 
