@@ -1,6 +1,6 @@
 package org.example;
 
-public class Box <T, V extends Number>{
+public class Box <T, V extends Number> implements BoxOperations<V> {
 
     private T genericAttribute;
     private V largestValue;
@@ -9,6 +9,7 @@ public class Box <T, V extends Number>{
         return genericAttribute;
     }
 
+    @Override
     public V getLargestValue() {
         return largestValue;
     }
@@ -17,7 +18,8 @@ public class Box <T, V extends Number>{
         this.genericAttribute = genericAttribute;
     }
 
-    public void setLargestValue (V one, V two){
+    @Override
+    public void setLargestValue(V one, V two){
 
         if (one instanceof Integer && two instanceof Integer) {
             this.largestValue = (one.intValue() > two.intValue()) ? one : two;
@@ -28,5 +30,7 @@ public class Box <T, V extends Number>{
         }
 
     }
+
+
 
 }
