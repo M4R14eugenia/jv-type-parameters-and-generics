@@ -37,13 +37,13 @@ public class Box<T, V extends Number & Comparable<V>> implements BoxOperations<V
         return genericAttribute;
     }
 
+    public void setGenericAttribute(T genericAttribute) {
+        this.genericAttribute = genericAttribute;
+    }
+
     @Override
     public V getLargestValue() {
         return largestValue;
-    }
-
-    public void setGenericAttribute(T genericAttribute) {
-        this.genericAttribute = genericAttribute;
     }
 
     @Override
