@@ -1,5 +1,7 @@
 package org.example;
 
+import static com.sun.jmx.mbeanserver.Util.cast;
+
 public class Box <T, V extends Number> implements BoxOperations<V> {
 
     private String name;
@@ -16,6 +18,14 @@ public class Box <T, V extends Number> implements BoxOperations<V> {
     public boolean hasSameName(Box <?, ?> box){
         return this.name.equals(box.getName());
     }
+    public Box<T,?> castValue(Box<T, V> box, Class<V> classType) {
+        if (classType == Integer.class) {
+            Box<T, Integer> newBox = new Box<>(box.getName());
+            newBox.setGenericAttribute(box.getGenericAttribute());
+            newBox.setLargestValue(box.getLargestValue().intValue(), box.getLargestValue().intValue());
+
+            return cast(newBox);}
+     return null;}
 
     public T getGenericAttribute() {
         return genericAttribute;
